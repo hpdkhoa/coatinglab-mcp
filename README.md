@@ -1,6 +1,18 @@
-# Coating Lab
+<h1 align="center">Coating Lab</h1>
 
 <!-- mcp-name: io.github.hpdkhoa/coatinglab-mcp -->
+
+<p align="center"><strong>Real surface finishes for game gun models, worn where use wears a gun.</strong></p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="license: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a>
+  <a href="pyproject.toml"><img alt="Python 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white"></a>
+  <a href="https://pypi.org/project/coatinglab-mcp/"><img alt="PyPI: coatinglab-mcp" src="https://img.shields.io/pypi/v/coatinglab-mcp?label=PyPI&logo=pypi&logoColor=white&color=3775a9"></a>
+  <a href="https://registry.modelcontextprotocol.io/v0/servers?search=coatinglab-mcp"><img alt="MCP Registry: coatinglab-mcp" src="https://img.shields.io/badge/MCP%20Registry-coatinglab--mcp-6f42c1"></a>
+  <a href="https://www.blender.org/download/"><img alt="Blender: 4.2+" src="https://img.shields.io/badge/Blender-4.2%2B-e87d0d?logo=blender&logoColor=white"></a>
+  <a href="#tools"><img alt="tools: 13" src="https://img.shields.io/badge/tools-13-orange"></a>
+  <a href="src/coatinglab/data/finishes.json"><img alt="finishes: 21 sourced" src="https://img.shields.io/badge/finishes-21%20sourced-orange"></a>
+</p>
 
 An MCP server that gives game gun models real surface finishes, worn where use wears a gun.
 
