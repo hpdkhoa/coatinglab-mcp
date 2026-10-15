@@ -1,0 +1,693 @@
+{
+ "about": "Real gun finishes as physically based values (linear colour, metallic 0 or 1, roughness). Every number carries its sources; estimate true marks values reasoned from descriptions, not measured. Research 2026-10-15.",
+ "rules": {
+  "dielectric_albedo_srgb": [
+   30,
+   240
+  ],
+  "metal_f0_min_linear": 0.46,
+  "notes": "Substance PBR guide: dielectric base not under 30 (lenient) to 50 (strict) sRGB and not over 240 sRGB; raw metal reflectance 70 to 100% specular, mapped to 180 to 255 sRGB (180 sRGB = linear 0.456). Metallic is binary; coatings and oxides on metal (paint, rust) are metallic 0 and only exposed bare metal is 1; intermediate values for dirt or corrosion transitions. UE: Specular default 0.5 = ~4% F0, use Roughness not Specular for variation; UE Specular max 1.0 = 8% F0, so magnetite-based finishes (F0 ~0.17) cannot be matched exactly in UE's default model.",
+  "sources": [
+   "https://www.adobe.com/learn/substance-3d-designer/web/the-pbr-guide-part-2",
+   "https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine",
+   "https://physicallybased.info/"
+  ]
+ },
+ "finishes": {
+  "anodized_black": {
+   "name": "Black hard anodized aluminium (MIL-A-8625 Type III Class 2, black)",
+   "process": "Sulfuric acid hard anodize (Type III), dyed black (Class 2), sealed. Oxide is Al2O3, a dielectric.",
+   "substrates": [
+    "aluminium"
+   ],
+   "base": {
+    "linear": [
+     0.0296,
+     0.0296,
+     0.0319
+    ],
+    "metallic": 0.0,
+    "roughness": 0.45,
+    "roughness_range": [
+     0.35,
+     0.6
+    ]
+   },
+   "worn_to": "aluminium_bare",
+   "notes": "Estimate. The oxide is a dielectric, so metallic 0 (UE and Substance treat coatings on metal as dielectric). No published sRGB for the anodize itself; MIL-A-8625 sets type, class and thickness, not a colour chip. Colour placed at about linear 0.03 (sRGB 48), just above the strict 50/lenient 30 sRGB dielectric floor; nearest FS 595 black is 37038 (w3schools approx #343236), which is a paint chip, not an anodize spec. Roughness: hardcoat on AR receivers reads matte to satin; 0.4 to 0.6, lower on polished/handled areas. Wear exposes bright machined aluminium on edges (mag well, takedown pins, charging handle).",
+   "sources": [
+    "https://www.anodizing.org/page/military-spec-anodic-coatings",
+    "https://www.w3schools.com/colors/colors_fs595.asp",
+    "https://www.adobe.com/learn/substance-3d-designer/web/the-pbr-guide-part-2",
+    "https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine"
+   ],
+   "estimate": true
+  },
+  "phosphate_manganese": {
+   "name": "Manganese phosphate (Parkerized) steel",
+   "process": "Immersion heavy manganese phosphate conversion coating (MIL-DTL-16232 Type M), usually oiled after.",
+   "substrates": [
+    "steel"
+   ],
+   "base": {
+    "linear": [
+     0.0423,
+     0.0423,
+     0.0395
+    ],
+    "metallic": 0.0,
+    "roughness": 0.7,
+    "roughness_range": [
+     0.55,
+     0.85
+    ]
+   },
+   "worn_to": "steel_bare",
+   "notes": "Estimate for colour and roughness. Supplier sources describe Type M as dark gray close to black, or blackish brown, with the post-treatment oil deepening it to black. Coarse porous crystals, so very matte; dry 0.75 to 0.85, oiled 0.55 to 0.7. Phosphate crystals are dielectric, metallic 0. Class 4 in the spec allows dyeing to a specified colour.",
+   "sources": [
+    "https://standards.globalspec.com/std/752761/mil-p-16232",
+    "https://phosphating.net/manganese-phosphating.html",
+    "https://linkonbiz.com/en/product/iframe-detail/1312",
+    "https://metcoat.com/phosphate-coatings.htm",
+    "https://finishing.com/332/69.shtml",
+    "https://en.wikipedia.org/wiki/Parkerizing",
+    "https://www.adobe.com/learn/substance-3d-designer/web/the-pbr-guide-part-2"
+   ],
+   "estimate": true
+  },
+  "phosphate_zinc": {
+   "name": "Zinc phosphate steel",
+   "process": "Immersion heavy zinc phosphate conversion coating (MIL-DTL-16232 Type Z), oiled or painted over.",
+   "substrates": [
+    "steel"
+   ],
+   "base": {
+    "linear": [
+     0.15,
+     0.15,
+     0.1413
+    ],
+    "metallic": 0.0,
+    "roughness": 0.75,
+    "roughness_range": [
+     0.65,
+     0.85
+    ]
+   },
+   "worn_to": "steel_bare",
+   "notes": "Estimate. Sources describe zinc phosphate as light to dark gray and finer/smoother crystals than manganese. Chosen as a mid grey (sRGB ~108). Roughness 0.65 to 0.85, matte. Metallic 0.",
+   "sources": [
+    "https://standards.globalspec.com/std/752761/mil-p-16232",
+    "https://linkonbiz.com/en/product/iframe-detail/1312",
+    "https://phosphating.net/manganese-phosphating.html",
+    "https://metcoat.com/phosphate-coatings.htm",
+    "https://www.adobe.com/learn/substance-3d-designer/web/the-pbr-guide-part-2"
+   ],
+   "estimate": true
+  },
+  "blued_hot": {
+   "name": "Hot salt blued (black oxide) steel",
+   "process": "Polished steel immersed in boiling caustic nitrate salts; forms a thin magnetite (Fe3O4) layer, about 1 to 2.5 um, oiled.",
+   "substrates": [
+    "steel"
+   ],
+   "base": {
+    "linear": [
+     0.0176,
+     0.0194,
+     0.0242
+    ],
+    "metallic": 0.0,
+    "roughness": 0.25,
+    "roughness_range": [
+     0.15,
+     0.35
+    ],
+    "ior": 2.42
+   },
+   "worn_to": "steel_bare",
+   "notes": "Estimate. Magnetite is a dark semiconductor oxide with n about 2.42 (MPIA/PMC tables); with small k that gives normal-incidence reflectance F0 about 0.17, far above the 0.04 of common dielectrics but far below metals. Recommended: metallic 0, near-black blue-tinted base, and raise specular (Blender Principled IOR 2.4; UE Specular to 1.0, its max of 8%, since UE cannot reach 17%). Alternative some artists use: metallic 1 with base linear about 0.17, which matches F0 but breaks the metal floor rule. Base sRGB 36 sits slightly under the strict 50 floor and above the lenient 30. Roughness depends on pre-polish: 0.15 to 0.35 for commercial high polish.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Bluing_(steel)",
+    "https://www.npsg.uwaterloo.ca/data/sand.php",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC9000335/table/materials-15-02601-t001",
+    "https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine",
+    "https://www.adobe.com/learn/substance-3d-designer/web/the-pbr-guide-part-2"
+   ],
+   "estimate": true
+  },
+  "blued_rust": {
+   "name": "Rust blued (slow rust blue) steel",
+   "process": "Acid solution applied, part rusted in humid cabinet, red rust boiled to black Fe3O4, carded off; repeated many times, oiled.",
+   "substrates": [
+    "steel"
+   ],
+   "base": {
+    "linear": [
+     0.0203,
+     0.0222,
+     0.0273
+    ],
+    "metallic": 0.0,
+    "roughness": 0.4,
+    "roughness_range": [
+     0.3,
+     0.5
+    ],
+    "ior": 2.42
+   },
+   "worn_to": "steel_bare",
+   "notes": "Distinct from hot bluing: Wikipedia describes a deep blue-black finish; repeated carding gives a softer satin lustre than hot blue. Same oxide (Fe3O4), so same specular advice (IOR ~2.4). Estimate roughness 0.3 to 0.5.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Bluing_(steel)",
+    "https://www.npsg.uwaterloo.ca/data/sand.php",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC9000335/table/materials-15-02601-t001"
+   ],
+   "estimate": true
+  },
+  "nitride": {
+   "name": "Salt bath nitrocarburized steel (FNC, QPQ)",
+   "process": "Liquid salt bath ferritic nitrocarburizing; diffusion process, not a coating; QPQ adds an oxidising quench and polish which makes it black.",
+   "substrates": [
+    "steel"
+   ],
+   "base": {
+    "linear": [
+     0.0252,
+     0.0262,
+     0.0284
+    ],
+    "metallic": 0.0,
+    "roughness": 0.35,
+    "roughness_range": [
+     0.3,
+     0.5
+    ],
+    "ior": 2.4
+   },
+   "worn_to": "steel_bare",
+   "notes": "Estimate. Sources describe a black matte to satin finish, between gloss and matte; colour depends on substrate steel, some steels come out paler grey; gas nitriding without post-oxidation looks frosty silver grey. The black surface is iron oxide over the nitride layer, so treat like bluing (metallic 0, IOR ~2.4). Hard diffusion layer: wear is slow and shows as polished dark steel, not bright metal, until deep wear. Roughness 0.3 to 0.5.",
+   "sources": [
+    "https://www.shootingillustrated.com/content/the-pros-and-cons-of-nitride-barrel-finishes/",
+    "https://www.shootingillustrated.com/articles/2015/8/26/finishing-touches/",
+    "https://en.wikipedia.org/wiki/Bluing_(steel)"
+   ],
+   "estimate": true
+  },
+  "ceramic_fde": {
+   "name": "Ceramic-polymer coating, Flat Dark Earth",
+   "process": "Sprayed ceramic-filled polymer, oven cured.",
+   "substrates": [
+    "any"
+   ],
+   "base": {
+    "linear": [
+     0.2582,
+     0.1946,
+     0.117
+    ],
+    "metallic": 0.0,
+    "roughness": 0.65,
+    "roughness_range": [
+     0.55,
+     0.75
+    ]
+   },
+   "worn_to": null,
+   "notes": "Ceramic-polymer (thin-film thermoset with ceramic filler) is a dielectric paint, metallic 0. Matte, roughness 0.55 to 0.75. worn_to is null because it depends on the substrate: use anodized_black or aluminium_bare on aluminium parts, phosphate_manganese or steel_bare on steel. Estimate. No FS 595 chip found for FDE; the maker describes it only as a medium-dark flat brown and suggests a physical swatch. Placed between Tan 499 (FS 20180 #847a65) and lighter: FDE reads lighter and warmer than Coyote 498.",
+   "sources": [
+    "https://www.cerakoteeu.com/?p=773",
+    "https://hextoral.com/hex-color/847a65/federal-std-595c/",
+    "https://hextoral.com/hex-color/796852/federal-std-595c/",
+    "https://www.adobe.com/learn/substance-3d-designer/web/the-pbr-guide-part-2"
+   ],
+   "estimate": true,
+   "worn_to_by_substrate": {
+    "aluminium": "aluminium_bare",
+    "steel": "steel_bare",
+    "metal": "steel_bare",
+    "polymer": null
+   }
+  },
+  "ceramic_odg": {
+   "name": "Ceramic-polymer coating, OD green",
+   "process": "Sprayed ceramic-filled polymer, oven cured.",
+   "substrates": [
+    "any"
+   ],
+   "base": {
+    "linear": [
+     0.0685,
+     0.0887,
+     0.0578
+    ],
+    "metallic": 0.0,
+    "roughness": 0.65,
+    "roughness_range": [
+     0.55,
+     0.75
+    ]
+   },
+   "worn_to": null,
+   "notes": "Ceramic-polymer (thin-film thermoset with ceramic filler) is a dielectric paint, metallic 0. Matte, roughness 0.55 to 0.75. worn_to is null because it depends on the substrate: use anodized_black or aluminium_bare on aluminium parts, phosphate_manganese or steel_bare on steel. Colour from FS 595C 34094 Green 383 (w3schools approx #4a5444; hextoral #4e5444). 34087 is NOT usable: it was renamed 34088 in 1984 and its hex conversions disagree (#534e42 vs #655e4c for 34088; w3schools 34088 #473f37).",
+   "sources": [
+    "https://www.w3schools.com/colors/colors_fs595.asp",
+    "https://hextoral.com/hex-color/4e5444/federal-std-595c/",
+    "https://hextoral.com/hex-color/534E42/ams-std-595a/",
+    "https://hextoral.com/hex-color/655e4c/federal-std-595c/",
+    "https://steelsoldiers.com/goto/post?id=654968",
+    "https://en.wikipedia.org/wiki/Federal_Standard_595"
+   ],
+   "estimate": false,
+   "worn_to_by_substrate": {
+    "aluminium": "aluminium_bare",
+    "steel": "steel_bare",
+    "metal": "steel_bare",
+    "polymer": null
+   }
+  },
+  "ceramic_tungsten": {
+   "name": "Ceramic-polymer coating, tungsten grey",
+   "process": "Sprayed ceramic-filled polymer, oven cured.",
+   "substrates": [
+    "any"
+   ],
+   "base": {
+    "linear": [
+     0.1119,
+     0.117,
+     0.1274
+    ],
+    "metallic": 0.0,
+    "roughness": 0.6,
+    "roughness_range": [
+     0.5,
+     0.7
+    ]
+   },
+   "worn_to": null,
+   "notes": "Ceramic-polymer (thin-film thermoset with ceramic filler) is a dielectric paint, metallic 0. Matte, roughness 0.55 to 0.75. worn_to is null because it depends on the substrate: use anodized_black or aluminium_bare on aluminium parts, phosphate_manganese or steel_bare on steel. Estimate. No FS number; a neutral mid-dark grey near FS 36118 Gunship Gray (w3schools #5b5e6a) but less blue.",
+   "sources": [
+    "https://www.w3schools.com/colors/colors_fs595.asp",
+    "https://www.adobe.com/learn/substance-3d-designer/web/the-pbr-guide-part-2"
+   ],
+   "estimate": true,
+   "worn_to_by_substrate": {
+    "aluminium": "aluminium_bare",
+    "steel": "steel_bare",
+    "metal": "steel_bare",
+    "polymer": null
+   }
+  },
+  "ceramic_graphite": {
+   "name": "Ceramic-polymer coating, graphite black",
+   "process": "Sprayed ceramic-filled polymer, oven cured.",
+   "substrates": [
+    "any"
+   ],
+   "base": {
+    "linear": [
+     0.0369,
+     0.0382,
+     0.0423
+    ],
+    "metallic": 0.0,
+    "roughness": 0.6,
+    "roughness_range": [
+     0.5,
+     0.7
+    ]
+   },
+   "worn_to": null,
+   "notes": "Ceramic-polymer (thin-film thermoset with ceramic filler) is a dielectric paint, metallic 0. Matte, roughness 0.55 to 0.75. worn_to is null because it depends on the substrate: use anodized_black or aluminium_bare on aluminium parts, phosphate_manganese or steel_bare on steel. Estimate based on FS 37030 Black Camo (w3schools #373538) / 37038 (#343236); graphite black is a near-black grey.",
+   "sources": [
+    "https://www.w3schools.com/colors/colors_fs595.asp",
+    "https://www.adobe.com/learn/substance-3d-designer/web/the-pbr-guide-part-2"
+   ],
+   "estimate": true,
+   "worn_to_by_substrate": {
+    "aluminium": "aluminium_bare",
+    "steel": "steel_bare",
+    "metal": "steel_bare",
+    "polymer": null
+   }
+  },
+  "ceramic_coyote": {
+   "name": "Ceramic-polymer coating, Coyote (Brown 498) / Tan 499",
+   "process": "Sprayed ceramic-filled polymer, oven cured.",
+   "substrates": [
+    "any"
+   ],
+   "base": {
+    "linear": [
+     0.1912,
+     0.1384,
+     0.0844
+    ],
+    "metallic": 0.0,
+    "roughness": 0.65,
+    "roughness_range": [
+     0.55,
+     0.75
+    ]
+   },
+   "worn_to": null,
+   "notes": "Ceramic-polymer (thin-film thermoset with ceramic filler) is a dielectric paint, metallic 0. Matte, roughness 0.55 to 0.75. worn_to is null because it depends on the substrate: use anodized_black or aluminium_bare on aluminium parts, phosphate_manganese or steel_bare on steel. Coyote Brown 498 = FS 595C 20150 (#796852; AMS-STD-595A #7a6852). Tan 499 = FS 20180 (#847a65), the Army OCP accessory colour; suppliers mix the two names (Soldier Systems 2012). Generic web 'coyote brown' #81613c (Wikipedia) is NOT the 498 standard. 30118 is Field Drab (#705a43), not coyote.",
+   "sources": [
+    "https://hextoral.com/hex-color/796852/federal-std-595c/",
+    "https://hextoral.com/hex-color/7a6852/ams-std-595a/",
+    "https://hextoral.com/hex-color/847a65/federal-std-595c/",
+    "https://soldiersystems.net/2012/07/08/so-tech-changes-their-coyote-brown-color/",
+    "https://en.wikipedia.org/wiki/Coyote_brown",
+    "https://www.w3schools.com/colors/colors_fs595.asp"
+   ],
+   "estimate": false,
+   "worn_to_by_substrate": {
+    "aluminium": "aluminium_bare",
+    "steel": "steel_bare",
+    "metal": "steel_bare",
+    "polymer": null
+   }
+  },
+  "aluminium_bare": {
+   "name": "Bare aluminium (machined or worn through anodize)",
+   "process": "Exposed 6061/7075 alloy.",
+   "substrates": [
+    "aluminium"
+   ],
+   "base": {
+    "linear": [
+     0.916,
+     0.923,
+     0.924
+    ],
+    "metallic": 1.0,
+    "roughness": 0.5,
+    "roughness_range": [
+     0.2,
+     0.5
+    ]
+   },
+   "worn_to": null,
+   "notes": "Colour measured (physicallybased.info, from refractiveindex.info n,k). UE docs give (0.913, 0.921, 0.925). Roughness is an estimate: worn/burnished edges 0.2 to 0.35, fresh machined 0.3 to 0.5. Alloy and natural oxide dull it slightly; some artists lower to ~0.85 linear. Roughness 0.5 (the rough end of the range): aluminium bared by wear through anodizing is abraded, not polished.",
+   "sources": [
+    "https://physicallybased.info/",
+    "https://github.com/AntonPalmqvist/physically-based-api/blob/main/deploy/v2/materials.json",
+    "https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine"
+   ],
+   "estimate": false
+  },
+  "steel_bare": {
+   "name": "Bare carbon steel (worn through bluing/phosphate)",
+   "process": "Exposed carbon steel.",
+   "substrates": [
+    "steel"
+   ],
+   "base": {
+    "linear": [
+     0.53,
+     0.513,
+     0.494
+    ],
+    "metallic": 1.0,
+    "roughness": 0.3,
+    "roughness_range": [
+     0.2,
+     0.5
+    ]
+   },
+   "worn_to": null,
+   "notes": "Colour measured: physicallybased.info Iron (0.530, 0.513, 0.494). UE docs Iron (0.560, 0.570, 0.580) is cooler and brighter; conflict noted. Roughness estimate: burnished holster-wear spots 0.2 to 0.3; scratched/abraded 0.35 to 0.5.",
+   "sources": [
+    "https://physicallybased.info/",
+    "https://github.com/AntonPalmqvist/physically-based-api/blob/main/deploy/v2/materials.json",
+    "https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine"
+   ],
+   "estimate": false
+  },
+  "stainless_matte": {
+   "name": "Stainless steel, bead blasted / matte",
+   "process": "Bead-blasted 416R or 17-4 barrel steel.",
+   "substrates": [
+    "steel"
+   ],
+   "base": {
+    "linear": [
+     0.669,
+     0.639,
+     0.598
+    ],
+    "metallic": 1.0,
+    "roughness": 0.55,
+    "roughness_range": [
+     0.5,
+     0.7
+    ]
+   },
+   "worn_to": null,
+   "notes": "Colour measured: physicallybased.info Stainless Steel. Roughness estimate for bead blast: 0.5 to 0.7. Wear polishes it (lower roughness), no colour change.",
+   "sources": [
+    "https://physicallybased.info/",
+    "https://github.com/AntonPalmqvist/physically-based-api/blob/main/deploy/v2/materials.json"
+   ],
+   "estimate": false
+  },
+  "polymer_black": {
+   "name": "Glass-filled nylon, black",
+   "process": "Injection moulded PA6/PA66 with glass fibre.",
+   "substrates": [
+    "polymer"
+   ],
+   "base": {
+    "linear": [
+     0.0296,
+     0.0296,
+     0.0296
+    ],
+    "metallic": 0.0,
+    "roughness": 0.6,
+    "roughness_range": [
+     0.35,
+     0.75
+    ]
+   },
+   "worn_to": null,
+   "notes": "Estimate. Black plastic floor: physicallybased.info lists near-black dielectrics around linear 0.02 (charcoal, tire); kept at linear ~0.03 (sRGB 48) per the strict floor. Moulded texture 0.55 to 0.75; handled/worn areas polish to 0.35 to 0.45. Wear does not change colour much (through-coloured); glass-filled parts show lighter grey scuffs where fibres are exposed.",
+   "sources": [
+    "https://physicallybased.info/",
+    "https://www.adobe.com/learn/substance-3d-designer/web/the-pbr-guide-part-2",
+    "https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine"
+   ],
+   "estimate": true
+  },
+  "polymer_fde": {
+   "name": "Glass-filled nylon, FDE",
+   "process": "Injection moulded PA with glass fibre, FDE pigment.",
+   "substrates": [
+    "polymer"
+   ],
+   "base": {
+    "linear": [
+     0.2542,
+     0.1946,
+     0.1221
+    ],
+    "metallic": 0.0,
+    "roughness": 0.6,
+    "roughness_range": [
+     0.4,
+     0.75
+    ]
+   },
+   "worn_to": null,
+   "notes": "Estimate. No standard chip for polymer FDE; same hue estimate as ceramic_fde. Makers' FDE varies (the coating maker says one FDE may match a gun-accessory maker's FDE better than the product named after it).",
+   "sources": [
+    "https://www.cerakoteeu.com/?p=773",
+    "https://www.adobe.com/learn/substance-3d-designer/web/the-pbr-guide-part-2"
+   ],
+   "estimate": true
+  },
+  "rubber": {
+   "name": "Rubber butt pad",
+   "process": "Moulded synthetic rubber.",
+   "substrates": [
+    "rubber"
+   ],
+   "base": {
+    "linear": [
+     0.023,
+     0.023,
+     0.023
+    ],
+    "metallic": 0.0,
+    "roughness": 0.7,
+    "roughness_range": [
+     0.7,
+     0.9
+    ]
+   },
+   "worn_to": null,
+   "notes": "Measured-class reference: physicallybased.info Tire, linear 0.023, roughness 0.7, IOR 1.5 (its own estimate). Recoil pads range 0.7 to 0.9.",
+   "sources": [
+    "https://physicallybased.info/",
+    "https://github.com/AntonPalmqvist/physically-based-api/blob/main/deploy/v2/materials.json"
+   ],
+   "estimate": false
+  },
+  "brass": {
+   "name": "Cartridge brass (70/30)",
+   "process": "Cu70 Zn30, drawn and annealed.",
+   "substrates": [
+    "brass"
+   ],
+   "base": {
+    "linear": [
+     0.91,
+     0.778,
+     0.423
+    ],
+    "metallic": 1.0,
+    "roughness": 0.3,
+    "roughness_range": [
+     0.2,
+     0.6
+    ]
+   },
+   "worn_to": null,
+   "notes": "Colour measured: physicallybased.info Brass (refractiveindex.info 'brass' data; alloy not stated as 70/30). Roughness estimate: new cases 0.2 to 0.3, fired/tarnished 0.4 to 0.6 and darker. Neck annealing leaves a blue-brown band.",
+   "sources": [
+    "https://physicallybased.info/",
+    "https://github.com/AntonPalmqvist/physically-based-api/blob/main/deploy/v2/materials.json"
+   ],
+   "estimate": false
+  },
+  "copper": {
+   "name": "Copper / gilding metal bullet jacket",
+   "process": "Jackets are usually gilding metal (95/5 or 90/10 Cu/Zn), close to copper.",
+   "substrates": [
+    "copper"
+   ],
+   "base": {
+    "linear": [
+     0.932,
+     0.623,
+     0.522
+    ],
+    "metallic": 1.0,
+    "roughness": 0.3,
+    "roughness_range": [
+     0.25,
+     0.4
+    ]
+   },
+   "worn_to": null,
+   "notes": "Colour measured for pure copper (physicallybased.info); UE docs (0.955, 0.637, 0.538). Gilding metal is slightly yellower; a lerp of ~10% toward brass is an estimate. Roughness 0.25 to 0.4.",
+   "sources": [
+    "https://physicallybased.info/",
+    "https://github.com/AntonPalmqvist/physically-based-api/blob/main/deploy/v2/materials.json",
+    "https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine"
+   ],
+   "estimate": false
+  },
+  "lead": {
+   "name": "Lead (bullet core, exposed nose)",
+   "process": "Lead/antimony alloy.",
+   "substrates": [
+    "lead"
+   ],
+   "base": {
+    "linear": [
+     0.626,
+     0.64,
+     0.693
+    ],
+    "metallic": 1.0,
+    "roughness": 0.5,
+    "roughness_range": [
+     0.35,
+     0.8
+    ]
+   },
+   "worn_to": null,
+   "notes": "Colour measured for fresh lead (physicallybased.info). Exposed lead oxidises quickly to dull grey; for oxidised lead use metallic 0, sRGB about #707276, roughness 0.7 (estimate).",
+   "sources": [
+    "https://physicallybased.info/",
+    "https://github.com/AntonPalmqvist/physically-based-api/blob/main/deploy/v2/materials.json",
+    "https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine"
+   ],
+   "estimate": false
+  },
+  "walnut_oiled": {
+   "name": "Walnut stock, oil finished",
+   "process": "Walnut (Juglans) stock with linseed/tung oil finish.",
+   "substrates": [
+    "wood"
+   ],
+   "base": {
+    "linear": [
+     0.1022,
+     0.0437,
+     0.0176
+    ],
+    "metallic": 0.0,
+    "roughness": 0.45,
+    "roughness_range": [
+     0.35,
+     0.55
+    ]
+   },
+   "worn_to": null,
+   "notes": "Estimate. Walnut colour studies (USDA Moslemi 1967) measure large variation in heartwood lightness; no published sRGB for oil-finished stock found. Medium-dark brown chosen; use a grain texture spanning roughly #3c2616 to #7a5434. Oil finish satin 0.35 to 0.55; worn/handled areas get lighter and shinier. Clear oil coat is dielectric.",
+   "sources": [
+    "https://research.fs.usda.gov/treesearch/10538",
+    "https://woodweb.com/knowledge_base/Quantitative_color_measurement_for_black_walnut_wo.html",
+    "https://www.adobe.com/learn/substance-3d-designer/web/the-pbr-guide-part-2"
+   ],
+   "estimate": true
+  }
+ },
+ "wear_levels": {
+  "new": {
+   "edge": 0.13,
+   "handling": 0.12,
+   "rub": 0.14,
+   "dirt": 0.1,
+   "about": "from the box: about 0.5 % of a coated rifle worn through, only its sharpest exposed edges"
+  },
+  "issued": {
+   "edge": 0.39,
+   "handling": 0.37,
+   "rub": 0.43,
+   "dirt": 0.35,
+   "about": "a few years in service: about 3 % worn, the edges, the controls and the magazine's flanks"
+  },
+  "worn": {
+   "edge": 0.67,
+   "handling": 0.64,
+   "rub": 0.74,
+   "dirt": 0.55,
+   "about": "a hard life: about 8 % worn, the grip and the support hand's ground"
+  },
+  "abused": {
+   "edge": 1.0,
+   "handling": 0.95,
+   "rub": 1.0,
+   "dirt": 0.8,
+   "about": "neglected and used: about 17 % worn, grime and carbon in every corner"
+  }
+ },
+ "wear_source": {
+  "note": "the amounts are estimates (no source gives wear rates); where wear goes: Holster and handling wear burnishes and removes thin finishes, worst on bluing (thin oxide, ~2.5 um) and least on ceramic coatings and nitride. Wear starts on prominent edges and corners which are rounded by contact. Collector guides list slide flats, muzzle, front sight, trigger guard, grip frame and ejection port on semi-autos; on revolvers cylinder, barrel, front sight, muzzle and high spots of the frame. Tight holsters polish; loose holsters rub the same points by movement. On AR-15s the bolt carrier is exposed to combustion gas and collects carbon, especially near gas rings and the bolt face; carbon plus grit is abrasive and wears contact points on bolt, carrier and receiver; bolt face shows carbon staining and finish wear at high round counts. Suggested model (estimate): edge-curvature mask x contact-zone mask drives a lerp from finish to worn_to material; on the BCG and inside the upper use a carbon layer (dielectric, linear ~0.02 to 0.03, roughness 0.8) plus a polished bare-steel band along rails; muzzle and gas port get carbon. No source gave quantitative wear rates, so the mask strengths are estimates.",
+  "sources": [
+   "https://www.americanrifleman.org/content/holster-wear",
+   "https://guncollectorsclub.com/holster-finish-wear.htm",
+   "https://guncollectorsclub.com/how-holsters-affect-collector-gun-finish.htm",
+   "https://en.wikipedia.org/wiki/Bluing_(steel)",
+   "https://www.trex-arms.com/ar-15-maintenance-and-general-inspection-201",
+   "https://www.thefirearmblog.com/blog/ar-15-maintenance-schedule-complete-guide-44826781",
+   "https://ar15discounts.com/how-to-tell-if-your-ar-15-bolt-is-worn-out-and-needs-replacing/",
+   "https://weapongenetics.com/cerakote-vs-kydex-holster/"
+  ],
+  "calibration": "each level set so Model Lab's M4A1 (2026-10-15) lands in the middle of its band (coat.WORN_BANDS): the bands are estimates of how such rifles look, the masks' placement follows the sources"
+ }
+}

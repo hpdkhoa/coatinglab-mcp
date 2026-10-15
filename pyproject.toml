@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "coatinglab-mcp"
+version = "0.1.0"
+description = "An MCP server that gives game gun models real surface finishes: a sourced finish library, coating variants per material slot, wear baked from where use wears a gun, and checks that hold both to the evidence."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Khoa Hoang" }]
+requires-python = ">=3.10"
+keywords = ["mcp", "blender", "pbr", "materials", "game-development", "weathering"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Topic :: Games/Entertainment",
+    "Topic :: Multimedia :: Graphics :: 3D Rendering",
+]
+dependencies = ["mcp>=2.0,<3", "pillow>=10"]
+
+[project.urls]
+Homepage = "https://github.com/hpdkhoa/coatinglab-mcp"
+Issues = "https://github.com/hpdkhoa/coatinglab-mcp/issues"
+
+[project.scripts]
+coatinglab-mcp = "coatinglab.server:main"
+coatinglab = "coatinglab.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/coatinglab"]

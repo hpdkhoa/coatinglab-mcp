@@ -1,0 +1,119 @@
+{
+ "about": "AR-15 family coatings on Model Lab's slots; a variant's slots missing from a build are left out",
+ "variants": {
+  "issued": {
+   "finishes": {
+    "Upper": "anodized_black",
+    "Lower": "anodized_black",
+    "Handguard": "anodized_black",
+    "Optic": "anodized_black",
+    "Receiver": "anodized_black",
+    "Barrel": "phosphate_manganese",
+    "Steel": "phosphate_manganese",
+    "Detail": "phosphate_manganese",
+    "Furniture": "polymer_black",
+    "Magazine": "anodized_black",
+    "Rubber": "rubber",
+    "Brass": "brass",
+    "Copper": "copper"
+   },
+   "wear": "issued",
+   "about": "as issued: hard anodized black aluminium, manganese phosphate steel, black polymer"
+  },
+  "new_black": {
+   "finishes": {
+    "Upper": "anodized_black",
+    "Lower": "anodized_black",
+    "Handguard": "anodized_black",
+    "Optic": "anodized_black",
+    "Receiver": "anodized_black",
+    "Barrel": "phosphate_manganese",
+    "Steel": "phosphate_manganese",
+    "Detail": "phosphate_manganese",
+    "Furniture": "polymer_black",
+    "Magazine": "anodized_black",
+    "Rubber": "rubber",
+    "Brass": "brass",
+    "Copper": "copper"
+   },
+   "wear": "new",
+   "about": "the same finishes from the box"
+  },
+  "fde_two_tone": {
+   "finishes": {
+    "Upper": "anodized_black",
+    "Lower": "ceramic_fde",
+    "Handguard": "ceramic_fde",
+    "Optic": "anodized_black",
+    "Receiver": "anodized_black",
+    "Barrel": "phosphate_manganese",
+    "Steel": "phosphate_manganese",
+    "Detail": "phosphate_manganese",
+    "Furniture": "polymer_fde",
+    "Magazine": "ceramic_fde",
+    "Rubber": "rubber",
+    "Brass": "brass",
+    "Copper": "copper"
+   },
+   "wear": "issued",
+   "about": "a black upper on an FDE ceramic-coated lower and handguard, FDE furniture"
+  },
+  "odg_ceramic": {
+   "finishes": {
+    "Upper": "ceramic_odg",
+    "Lower": "ceramic_odg",
+    "Handguard": "ceramic_odg",
+    "Optic": "anodized_black",
+    "Receiver": "anodized_black",
+    "Barrel": "nitride",
+    "Steel": "phosphate_manganese",
+    "Detail": "phosphate_manganese",
+    "Furniture": "polymer_black",
+    "Magazine": "ceramic_odg",
+    "Rubber": "rubber",
+    "Brass": "brass",
+    "Copper": "copper"
+   },
+   "wear": "worn",
+   "about": "OD green ceramic coat over the aluminium, a nitrided barrel, worn hard"
+  },
+  "tungsten_stainless": {
+   "finishes": {
+    "Upper": "ceramic_tungsten",
+    "Lower": "ceramic_tungsten",
+    "Handguard": "ceramic_graphite",
+    "Optic": "anodized_black",
+    "Receiver": "anodized_black",
+    "Barrel": "stainless_matte",
+    "Steel": "phosphate_manganese",
+    "Detail": "phosphate_manganese",
+    "Furniture": "polymer_black",
+    "Magazine": "anodized_black",
+    "Rubber": "rubber",
+    "Brass": "brass",
+    "Copper": "copper"
+   },
+   "wear": "new",
+   "about": "tungsten grey ceramic, a matte stainless barrel"
+  },
+  "abused_parkerized": {
+   "finishes": {
+    "Upper": "anodized_black",
+    "Lower": "anodized_black",
+    "Handguard": "anodized_black",
+    "Optic": "anodized_black",
+    "Receiver": "anodized_black",
+    "Barrel": "phosphate_zinc",
+    "Steel": "phosphate_zinc",
+    "Detail": "phosphate_manganese",
+    "Furniture": "polymer_black",
+    "Magazine": "anodized_black",
+    "Rubber": "rubber",
+    "Brass": "brass",
+    "Copper": "copper"
+   },
+   "wear": "abused",
+   "about": "a neglected rifle: zinc phosphate steel, heavy wear and grime"
+  }
+ }
+}
